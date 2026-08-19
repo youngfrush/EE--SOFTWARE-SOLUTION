@@ -267,7 +267,7 @@ const App = () => {
       tech: ['Python', 'PyTorch', 'Go', 'MQL5', 'PostgreSQL', 'Docker'],
       features: ['Real-time tick prediction modeling', 'REST/Websocket API command layer', 'Risk manager module with sliding trailing stops', 'Telegram automated report triggers'],
       metrics: '34.8% Backtest Annualized Alpha • 6.8% Max Historical Drawdown',
-      github: 'https://github.com',
+      github: 'https://github.com/youngfrush/EE--SOFTWARE-SOLUTION',
       imageColor: 'from-blue-600 via-indigo-600 to-purple-600',
       mockCode: `def evaluate_order_flow(order_book, threshold=0.65):\n    \"\"\"Analyze raw depth balance to estimate immediate trend direction\"\"\"\n    bid_depth = sum([level['volume'] for level in order_book['bids']])\n    ask_depth = sum([level['volume'] for level in order_book['asks']])\n    imbalance = (bid_depth - ask_depth) / (bid_depth + ask_depth)\n    \n    if abs(imbalance) >= threshold:\n        signal = \"BUY\" if imbalance > 0 else \"SELL\"\n        logger.info(f\"Depth Signal generated: {signal} ({imbalance:.2f})\")\n        return signal, abs(imbalance)\n    return \"HOLD\", 0.0`
     },
@@ -280,7 +280,7 @@ const App = () => {
       tech: ['React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'HTML5 Audio', 'Vercel'],
       features: ['Seamless audio streaming & buffering queue', 'Interactive playlist controller & shuffle logic', 'Fluid animations matching track states', 'Mobile layout media listener support'],
       metrics: '100% Client-Side Rendered • Responsive across all breakpoints',
-      github: 'https://github.com',
+      github: 'https://github.com/youngfrush/EE--SOFTWARE-SOLUTION',
       demoUrl: 'https://frush-music-player.vercel.app/',
       imageColor: 'from-cyan-500 to-blue-600',
       mockCode: `const useAudioPlayer = (src) => {\n  const audioRef = useRef(new Audio(src));\n  const [isPlaying, setIsPlaying] = useState(false);\n  const togglePlay = () => {\n    if (isPlaying) {\n      audioRef.current.pause();\n    } else {\n      audioRef.current.play();\n    }\n    setIsPlaying(!isPlaying);\n  };\n  return { isPlaying, togglePlay };\n};`
@@ -294,7 +294,7 @@ const App = () => {
       tech: ['Go', 'Bash', 'AWS SDK', 'Docker', 'InfluxDB', 'Grafana'],
       features: ['Automated AWS/Azure configuration security scans', 'Zero-trust IAM policy audit reports', 'Immediate webhook & SMS notifications', 'Docker image security scanning integration'],
       metrics: 'Scans over 1,500 assets in 45 seconds • Integrated on 12 production stacks',
-      github: 'https://github.com',
+      github: 'https://github.com/youngfrush/EE--SOFTWARE-SOLUTION',
       imageColor: 'from-purple-600 to-pink-500',
       mockCode: `package main\n\nimport (\n\t"context"\n\t"github.com/aws/aws-sdk-go-v2/config"\n\t"github.com/aws/aws-sdk-go-v2/service/ec2"\n)\n\nfunc ScanSecurityGroups() ([]SecurityGroupAlert, error) {\n\tcfg, err := config.LoadDefaultConfig(context.TODO())\n\tif err != nil { return nil, err }\n\tclient := ec2.NewFromConfig(cfg)\n\t// Check port 22/3389 exposed to CIDR 0.0.0.0/0\n\t// Generate payload...\n\treturn alerts, nil\n}`
     },
@@ -307,7 +307,7 @@ const App = () => {
       tech: ['React', 'TypeScript', 'Ethers.js', 'TailwindCSS', 'Web3.js', 'Vercel'],
       features: ['BIP-39 mnemonic verification diagnostics', 'Dynamic HD wallet derivation paths scanner', 'RPC node connectivity integrity tests', 'High-end client-side encryption diagnostics'],
       metrics: 'Zero server data storage • 100% browser-based decryptions',
-      github: 'https://github.com',
+      github: 'https://github.com/youngfrush/EE--SOFTWARE-SOLUTION',
       demoUrl: 'https://bitcoin-recovery.vercel.app/',
       imageColor: 'from-amber-500 to-orange-600',
       mockCode: `const deriveWalletKeys = (mnemonic, path) => {\n  const hdNode = ethers.utils.HDNode.fromMnemonic(mnemonic);\n  const derivedNode = hdNode.derivePath(path);\n  return {\n    address: derivedNode.address,\n    privateKey: derivedNode.privateKey\n  };\n};`
