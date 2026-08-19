@@ -5,7 +5,7 @@ import {
   Code, Globe, ChevronRight, Activity, CheckCircle, 
   Cpu, Award, Calendar, Send, Sparkles, 
   Star, Play, Pause, RefreshCw, X, ChevronDown, ArrowRight,
-  Terminal, ShieldCheck, DollarSign
+  Terminal, ShieldCheck, DollarSign, Menu
 } from 'lucide-react';
 
 // TypeScript Interfaces
@@ -42,6 +42,9 @@ const App = () => {
     const saved = localStorage.getItem('theme');
     return saved ? saved === 'dark' : true;
   });
+
+  // Mobile navigation menu state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Navigation and active sections
   const { scrollYProgress } = useScroll();
@@ -392,18 +395,18 @@ const App = () => {
           ? 'py-3 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-900/50 shadow-lg shadow-slate-900/5' 
           : 'py-5 bg-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-600/30 group-hover:scale-105 transition-transform duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
+          <a href="#" className="flex items-center gap-2 group flex-shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black text-lg sm:text-xl shadow-lg shadow-blue-600/30 group-hover:scale-105 transition-transform duration-300">
               EE
             </div>
             <div>
-              <span className="font-display font-bold text-lg tracking-tight block">EE SOFTWARE</span>
+              <span className="font-display font-bold text-base sm:text-lg tracking-tight block">EE SOFTWARE</span>
               <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-widest block -mt-1 uppercase">Solutions</span>
             </div>
           </a>
 
-          {/* Nav Links (Desktop) */}
+          {/* Nav Links (Desktop only) */}
           <div className="hidden lg:flex items-center gap-8 font-medium text-sm">
             <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
             <a href="#bots" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Forex Intelligence</a>
@@ -413,29 +416,95 @@ const App = () => {
             <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Theme Toggle Button */}
             <button 
               onClick={() => setDarkMode(!darkMode)}
-              className="w-10 h-10 rounded-xl bg-slate-200/60 dark:bg-slate-900/60 border border-slate-300/40 dark:border-slate-800/40 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-200/60 dark:bg-slate-900/60 border border-slate-300/40 dark:border-slate-800/40 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               aria-label="Toggle dark mode"
             >
-              {darkMode ? <Sun size={18} className="text-yellow-400" /> : <Moon size={18} />}
+              {darkMode ? <Sun size={16} className="text-yellow-400" /> : <Moon size={16} />}
             </button>
 
-            {/* Quick Consultation CTA */}
+            {/* Quick Consultation CTA — hidden on mobile to save space */}
             <a 
               href="#contact" 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs md:text-sm px-5 py-2.5 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-blue-600/20"
+              className="hidden sm:flex bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-blue-600/20"
             >
-              <MessageCircle size={16} /> <span>Consultation</span>
+              <MessageCircle size={15} /> <span>Consultation</span>
             </a>
+
+            {/* Hamburger / Close toggle — visible only on < lg */}
+            <button
+              id="mobile-menu-toggle"
+              onClick={() => setMobileMenuOpen(prev => !prev)}
+              className="lg:hidden w-9 h-9 rounded-xl bg-slate-200/60 dark:bg-slate-900/60 border border-slate-300/40 dark:border-slate-800/40 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Navigation Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
+              className="lg:hidden overflow-hidden"
+            >
+              <div className="mx-4 mb-4 mt-2 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl rounded-2xl border border-slate-200/60 dark:border-slate-800/50 shadow-2xl shadow-slate-900/10 overflow-hidden">
+                {/* Nav links */}
+                <div className="p-4 space-y-1">
+                  {[
+                    { href: '#about', label: 'About' },
+                    { href: '#bots', label: 'Forex Intelligence' },
+                    { href: '#projects', label: 'Projects' },
+                    { href: '#skills', label: 'Expertise' },
+                    { href: '#journey', label: 'Journey' },
+                    { href: '#contact', label: 'Contact' },
+                  ].map((link, i) => (
+                    <motion.a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.04 }}
+                      className="flex items-center justify-between w-full px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-blue-950/40 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group"
+                    >
+                      <span>{link.label}</span>
+                      <ChevronRight size={15} className="text-slate-300 dark:text-slate-600 group-hover:text-blue-500 transition-colors" />
+                    </motion.a>
+                  ))}
+                </div>
+
+                {/* Divider */}
+                <div className="mx-4 border-t border-slate-100 dark:border-slate-800/60" />
+
+                {/* CTA inside menu */}
+                <div className="p-4">
+                  <a
+                    href="#contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-5 py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-600/20"
+                  >
+                    <MessageCircle size={16} /> Get a Free Consultation
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
-      <section id="about" className="relative pt-36 md:pt-48 pb-24 md:pb-32 px-6 overflow-hidden">
+      <section id="about" className="relative pt-28 sm:pt-36 md:pt-48 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 overflow-hidden">
         {/* Glow Spheres */}
         <div className="absolute top-1/4 left-1/10 w-72 md:w-96 h-72 md:h-96 bg-blue-600/10 dark:bg-blue-600/15 rounded-full blur-[100px] md:blur-[130px] -z-10" />
         <div className="absolute bottom-1/4 right-1/10 w-72 md:w-96 h-72 md:h-96 bg-cyan-600/10 dark:bg-cyan-600/10 rounded-full blur-[100px] md:blur-[130px] -z-10" />
@@ -452,7 +521,7 @@ const App = () => {
                 <Sparkles size={12} className="animate-pulse" /> 2026 Strategy Roadmap
               </div>
               
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] text-slate-900 dark:text-white">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] text-slate-900 dark:text-white">
                 Code that <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">scales</span>, <br />
                 Bots that <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-500">win.</span>
               </h1>
@@ -487,18 +556,18 @@ const App = () => {
               </div>
 
               {/* Hero Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200 dark:border-slate-900 max-w-lg">
+              <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-900 max-w-lg">
                 <div>
-                  <h4 className="text-2xl sm:text-3xl font-bold font-display text-blue-600">6+ Years</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Coding & Systems Engineering</p>
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-bold font-display text-blue-600">6+ Years</h4>
+                  <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">Coding & Systems Engineering</p>
                 </div>
                 <div>
-                  <h4 className="text-2xl sm:text-3xl font-bold font-display text-blue-600">10+ Bots</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Live Automated Indicators</p>
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-bold font-display text-blue-600">10+ Bots</h4>
+                  <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">Live Automated Indicators</p>
                 </div>
                 <div>
-                  <h4 className="text-2xl sm:text-3xl font-bold font-display text-blue-600">95%</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Win-rate Backtested Confidence</p>
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-bold font-display text-blue-600">95%</h4>
+                  <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">Win-rate Backtested Confidence</p>
                 </div>
               </div>
             </div>
@@ -586,7 +655,7 @@ const App = () => {
       </section>
 
       {/* Interactive Forex Bot Live Dashboard Section */}
-      <section id="bots" className="py-24 md:py-32 px-6 bg-slate-900 dark:bg-slate-950 text-white relative overflow-hidden">
+      <section id="bots" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 dark:bg-slate-950 text-white relative overflow-hidden">
         
         {/* Abstract background graphics */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/15 rounded-full blur-[140px] -z-10" />
@@ -910,7 +979,7 @@ const App = () => {
       </section>
 
       {/* Filterable Software Projects Showcase Section */}
-      <section id="projects" className="py-24 md:py-32 px-6">
+      <section id="projects" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
@@ -1115,7 +1184,7 @@ const App = () => {
       </AnimatePresence>
 
       {/* Interactive Technical Skills Grid Section */}
-      <section id="skills" className="py-24 md:py-32 px-6 bg-slate-100 dark:bg-slate-900/30 border-y border-slate-200/50 dark:border-slate-900/50">
+      <section id="skills" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-100 dark:bg-slate-900/30 border-y border-slate-200/50 dark:border-slate-900/50">
         <div className="max-w-7xl mx-auto">
           
           <div className="grid lg:grid-cols-12 gap-12 items-start">
@@ -1212,7 +1281,7 @@ const App = () => {
       </section>
 
       {/* Professional Journey Timeline Section */}
-      <section id="journey" className="py-24 md:py-32 px-6">
+      <section id="journey" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           
           <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
@@ -1228,9 +1297,9 @@ const App = () => {
           </div>
 
           {/* Timeline Layout */}
-          <div className="relative max-w-3xl mx-auto pl-6 md:pl-0">
-            {/* Central line */}
-            <div className="absolute top-0 bottom-0 left-6 md:left-1/2 w-0.5 bg-slate-200 dark:bg-slate-900" />
+          <div className="relative max-w-3xl mx-auto">
+            {/* Central line: left-aligned on mobile, centered on md+ */}
+            <div className="absolute top-0 bottom-0 left-5 md:left-1/2 w-0.5 bg-slate-200 dark:bg-slate-900" />
 
             {/* Timeline nodes */}
             {[
@@ -1263,41 +1332,52 @@ const App = () => {
                 side: 'right'
               }
             ].map((node, i) => (
-              <div key={i} className="relative grid md:grid-cols-2 gap-8 mb-12 items-center">
+              <div key={i} className="relative mb-10 md:mb-12">
                 
-                {/* Node Dot */}
-                <div className="absolute left-0 md:left-1/2 w-6 h-6 rounded-full bg-blue-600 border-4 border-slate-50 dark:border-slate-950 transform -translate-x-3 z-10" />
-
-                {/* Left Side Content */}
-                <div className={`md:text-right space-y-2 md:pr-12 pl-8 md:pl-0 ${
-                  node.side === 'left' ? 'md:order-1' : 'md:order-2 opacity-0 md:block pointer-events-none'
-                }`}>
-                  {node.side === 'left' && (
-                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/70 dark:border-slate-900/70 shadow-sm hover:border-blue-500/20 transition-all">
-                      <span className="font-mono text-xs font-bold text-blue-600 dark:text-blue-400">{node.year}</span>
-                      <h4 className="font-display font-bold text-base text-slate-950 dark:text-white mt-1">{node.title}</h4>
-                      <p className="text-xs font-semibold text-slate-400 mt-0.5">{node.firm}</p>
-                      <p className="text-slate-600 dark:text-slate-400 text-xs mt-3 leading-relaxed font-mono">
-                        {node.desc}
-                      </p>
-                    </div>
-                  )}
+                {/* ── MOBILE layout: all cards left-aligned after the timeline line ── */}
+                <div className="flex md:hidden items-start gap-5 pl-14 pr-2">
+                  {/* Node Dot (mobile) */}
+                  <div className="absolute left-2.5 top-5 w-5 h-5 rounded-full bg-blue-600 border-4 border-slate-50 dark:border-slate-950 z-10" />
+                  <div className="w-full bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200/70 dark:border-slate-900/70 shadow-sm">
+                    <span className="font-mono text-xs font-bold text-blue-600 dark:text-blue-400">{node.year}</span>
+                    <h4 className="font-display font-bold text-sm text-slate-950 dark:text-white mt-1">{node.title}</h4>
+                    <p className="text-xs font-semibold text-slate-400 mt-0.5">{node.firm}</p>
+                    <p className="text-slate-600 dark:text-slate-400 text-xs mt-3 leading-relaxed font-mono">{node.desc}</p>
+                  </div>
                 </div>
 
-                {/* Right Side Content */}
-                <div className={`space-y-2 md:pl-12 pl-8 md:pl-0 ${
-                  node.side === 'right' ? 'md:order-2' : 'md:order-1 opacity-0 md:block pointer-events-none'
-                }`}>
-                  {node.side === 'right' && (
-                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/70 dark:border-slate-900/70 shadow-sm hover:border-blue-500/20 transition-all">
-                      <span className="font-mono text-xs font-bold text-blue-600 dark:text-blue-400">{node.year}</span>
-                      <h4 className="font-display font-bold text-base text-slate-950 dark:text-white mt-1">{node.title}</h4>
-                      <p className="text-xs font-semibold text-slate-400 mt-0.5">{node.firm}</p>
-                      <p className="text-slate-600 dark:text-slate-400 text-xs mt-3 leading-relaxed font-mono">
-                        {node.desc}
-                      </p>
-                    </div>
-                  )}
+                {/* ── DESKTOP layout: alternating left/right ── */}
+                <div className="hidden md:grid md:grid-cols-2 gap-8 items-center">
+                  {/* Node Dot (desktop) */}
+                  <div className="absolute left-1/2 top-1/2 w-6 h-6 rounded-full bg-blue-600 border-4 border-slate-50 dark:border-slate-950 transform -translate-x-1/2 -translate-y-1/2 z-10" />
+
+                  {/* Left column */}
+                  <div className={`text-right pr-12 ${
+                    node.side === 'left' ? 'order-1' : 'order-1 opacity-0 pointer-events-none'
+                  }`}>
+                    {node.side === 'left' && (
+                      <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/70 dark:border-slate-900/70 shadow-sm hover:border-blue-500/20 transition-all">
+                        <span className="font-mono text-xs font-bold text-blue-600 dark:text-blue-400">{node.year}</span>
+                        <h4 className="font-display font-bold text-base text-slate-950 dark:text-white mt-1">{node.title}</h4>
+                        <p className="text-xs font-semibold text-slate-400 mt-0.5">{node.firm}</p>
+                        <p className="text-slate-600 dark:text-slate-400 text-xs mt-3 leading-relaxed font-mono">{node.desc}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Right column */}
+                  <div className={`pl-12 ${
+                    node.side === 'right' ? 'order-2' : 'order-2 opacity-0 pointer-events-none'
+                  }`}>
+                    {node.side === 'right' && (
+                      <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/70 dark:border-slate-900/70 shadow-sm hover:border-blue-500/20 transition-all">
+                        <span className="font-mono text-xs font-bold text-blue-600 dark:text-blue-400">{node.year}</span>
+                        <h4 className="font-display font-bold text-base text-slate-950 dark:text-white mt-1">{node.title}</h4>
+                        <p className="text-xs font-semibold text-slate-400 mt-0.5">{node.firm}</p>
+                        <p className="text-slate-600 dark:text-slate-400 text-xs mt-3 leading-relaxed font-mono">{node.desc}</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
               </div>
@@ -1308,7 +1388,7 @@ const App = () => {
       </section>
 
       {/* Testimonials Marquee Section */}
-      <section className="py-24 px-6 bg-slate-100 dark:bg-slate-900/20 border-t border-slate-200/50 dark:border-slate-900/50 overflow-hidden">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 bg-slate-100 dark:bg-slate-900/20 border-t border-slate-200/50 dark:border-slate-900/50 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
@@ -1375,7 +1455,7 @@ const App = () => {
       </section>
 
       {/* Interactive Contact / WhatsApp Consultation Form Section */}
-      <section id="contact" className="py-24 md:py-32 px-6 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
+      <section id="contact" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
         
         {/* Glow Spheres */}
         <div className="absolute top-1/4 right-0 w-80 h-80 bg-blue-600/5 dark:bg-blue-600/10 rounded-full blur-[120px] -z-10" />
@@ -1547,7 +1627,7 @@ const App = () => {
       </section>
 
       {/* Premium Footer */}
-      <footer className="py-16 px-6 bg-slate-950 text-white border-t border-slate-900">
+      <footer className="py-12 sm:py-16 px-4 sm:px-6 bg-slate-950 text-white border-t border-slate-900">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           
           <div className="text-center md:text-left">
