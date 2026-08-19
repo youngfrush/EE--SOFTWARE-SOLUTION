@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { 
-  Sun, Moon, Laptop, TrendingUp, MessageCircle, ExternalLink, 
-  Code, Shield, Globe, ChevronRight, Activity, CheckCircle, 
-  Database, Server, Cpu, Award, Calendar, Send, Sparkles, 
-  Star, Play, Pause, RefreshCw, X, ChevronDown, Check, ArrowRight,
+  Sun, Moon, TrendingUp, MessageCircle, ExternalLink, 
+  Code, Globe, ChevronRight, Activity, CheckCircle, 
+  Cpu, Award, Calendar, Send, Sparkles, 
+  Star, Play, Pause, RefreshCw, X, ChevronDown, ArrowRight,
   Terminal, ShieldCheck, DollarSign
 } from 'lucide-react';
 
