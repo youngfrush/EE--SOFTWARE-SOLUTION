@@ -516,8 +516,8 @@ const App = () => {
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             
             {/* Hero Left Content */}
-            <div className="lg:col-span-7 text-left space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200/50 dark:border-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold font-mono uppercase tracking-widest">
+            <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200/50 dark:border-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold font-mono uppercase tracking-widest mx-auto lg:mx-0">
                 <Sparkles size={12} className="animate-pulse" /> 2026 Strategy Roadmap
               </div>
               
@@ -535,12 +535,12 @@ const App = () => {
                 </p>
               </div>
 
-              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed mx-auto lg:mx-0">
                 I am Emmanuel Effiong. I design scalable full-stack applications and architect automated Forex trading algorithms that transform market data into strategy execution.
               </p>
 
               {/* Action buttons */}
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap gap-4 pt-2 justify-center lg:justify-start">
                 <a 
                   href="#bots" 
                   className="bg-slate-950 hover:bg-slate-900 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-950 font-bold text-sm px-8 py-4 rounded-xl flex items-center gap-2 hover:gap-4 transition-all shadow-xl shadow-slate-950/10 dark:shadow-white/5 group"
@@ -556,7 +556,7 @@ const App = () => {
               </div>
 
               {/* Hero Stats */}
-              <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-900 max-w-lg">
+              <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-900 max-w-lg mx-auto lg:mx-0">
                 <div>
                   <h4 className="text-xl sm:text-2xl md:text-3xl font-bold font-display text-blue-600">6+ Years</h4>
                   <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">Coding & Systems Engineering</p>
