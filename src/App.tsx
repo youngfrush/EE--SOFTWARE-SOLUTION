@@ -108,21 +108,18 @@ const App = () => {
     e.preventDefault();
     setMobileMenuOpen(false);
     const targetId = href.replace('#', '');
-    if (!targetId) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    const elem = document.getElementById(targetId);
-    if (elem) {
-      const headerOffset = 80;
-      const elementPosition = elem.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+    // Defer scroll calculation by 50ms so React finishes updating layout/closing mobile dropdown
+    setTimeout(() => {
+      if (!targetId || targetId === 'about') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
   };
 
   // Typing effect hook
