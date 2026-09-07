@@ -433,6 +433,15 @@ const App = () => {
             <a href="#skills" onClick={(e) => scrollToSection(e, '#skills')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Expertise</a>
             <a href="#journey" onClick={(e) => scrollToSection(e, '#journey')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Journey</a>
             <a href="#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
+            <a 
+              href="https://www.hfm.com/sv/en/?refid=30574995" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-emerald-500 hover:text-emerald-400 font-bold flex items-center gap-1.5 transition-colors"
+            >
+              <span>Recommended Broker</span>
+              <ExternalLink size={13} />
+            </a>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
@@ -502,6 +511,19 @@ const App = () => {
                       <ChevronRight size={15} className="text-slate-300 dark:text-slate-600 group-hover:text-blue-500 transition-colors" />
                     </motion.a>
                   ))}
+
+                  <motion.a
+                    href="https://www.hfm.com/sv/en/?refid=30574995"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.28 }}
+                    className="flex items-center justify-between w-full px-4 py-3 rounded-xl font-bold text-sm text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-colors group cursor-pointer"
+                  >
+                    <span>Tap here to use me recomended broker</span>
+                    <ExternalLink size={15} className="text-emerald-500 group-hover:scale-110 transition-transform" />
+                  </motion.a>
                 </div>
 
                 {/* Divider */}
@@ -574,6 +596,15 @@ const App = () => {
                   className="bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-sm px-8 py-4 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors"
                 >
                   View Software Projects
+                </a>
+                <a 
+                  href="https://www.hfm.com/sv/en/?refid=30574995" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-4 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-emerald-600/20"
+                >
+                  <ExternalLink size={16} />
+                  <span>Tap here to use me recomended broker</span>
                 </a>
               </div>
 
@@ -991,6 +1022,34 @@ const App = () => {
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-center block py-4 rounded-xl shadow-lg shadow-blue-600/10 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
                 >
                   Acquire This Automation Package
+                </a>
+              </div>
+
+              {/* Recommended Broker Card */}
+              <div className="bg-gradient-to-r from-slate-900 via-emerald-950/40 to-slate-900 border border-emerald-500/30 rounded-3xl p-6 space-y-4 shadow-2xl w-full max-w-xl mx-auto lg:mx-0 backdrop-blur-md">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">Verified Partner</span>
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase bg-slate-800 px-2 py-0.5 rounded">HFM Broker</span>
+                </div>
+
+                <div>
+                  <h4 className="text-lg font-bold text-white font-display">Recommended Forex Execution Broker</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed mt-1">
+                    Optimized for low spreads, ultra-fast tick execution, and full MT4/MT5 algorithm compatibility across currency pairs and Gold.
+                  </p>
+                </div>
+
+                <a
+                  href="https://www.hfm.com/sv/en/?refid=30574995"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-center flex items-center justify-center gap-2 py-4 px-4 rounded-xl shadow-lg shadow-emerald-600/20 hover:scale-[1.01] active:scale-[0.99] transition-all text-sm cursor-pointer"
+                >
+                  <ExternalLink size={16} />
+                  <span>Tap here to use me recomended broker</span>
                 </a>
               </div>
 
@@ -1665,6 +1724,7 @@ const App = () => {
             <a href="#skills" onClick={(e) => scrollToSection(e, '#skills')} className="hover:text-white transition-colors">Expertise</a>
             <a href="#journey" onClick={(e) => scrollToSection(e, '#journey')} className="hover:text-white transition-colors">Journey</a>
             <a href="#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-white transition-colors">Contact</a>
+            <a href="https://www.hfm.com/sv/en/?refid=30574995" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors">Broker</a>
           </div>
 
           <div className="text-center md:text-right font-mono text-[10px] text-slate-500">
